@@ -10,7 +10,7 @@
 #include <STM32F4TouchController.hpp>
 
 /* USER CODE BEGIN user includes */
-
+#include "CustomHAL.hpp"
 /* USER CODE END user includes */
 
 /***********************************************************
@@ -59,7 +59,10 @@ extern "C"
 
 }
 
-static uint32_t frameBuf0 = (uint32_t)(0xc0000000);
+static uint32_t frameBuf0 = (uint32_t) (0xc0000000);
+static uint32_t frameBuf1 = (uint32_t) (0xc0800000);
+static uint32_t cacheStart = (uint32_t)(0xc1000000);
+static uint32_t cacheSize = (uint32_t) (0x00800000);
 extern "C" {
 
 uint32_t LCD_GetXSize(void)
@@ -94,7 +97,7 @@ STM32F4TouchController tc;
 STM32F4Instrumentation mcuInstr;
 
 static LCD24bpp display;
-static uint16_t bitdepth = 24;
+//static uint16_t bitdepth = 24;
 
 namespace touchgfx
 {
@@ -103,17 +106,29 @@ void touchgfx_init()
   uint16_t dispWidth = 480;
   uint16_t dispHeight = 272;
   
-  HAL& hal = touchgfx_generic_init<STM32F4HAL>(dma, display, tc, dispWidth, dispHeight,(uint16_t*) 0, 
-                                               0, 0); 
-    hal.getInstance()->setDisplayOrientation(ORIENTATION_PORTRAIT);
-    hal.setFrameBufferStartAddress((uint16_t*)frameBuf0, bitdepth ,true , true);
+  HAL& hal = touchgfx_generic_init<CustomHAL>(dma, display, tc, dispWidth, dispHeight, (uint16_t*)cacheStart, cacheSize, 0);
+  const uint32_t bufferSize = LCD_GetXSize() * LCD_GetYSize() * 4;
+
+  for (uint32_t i = 0; i < bufferSize; i += 4)
+  {
+      *((uint32_t *)(frameBuf0 + i)) = 0x00000000;
+  }
+
+  for (uint32_t i = 0; i < bufferSize; i += 4)
+  {
+      *((uint32_t *)(frameBuf1 + i)) = 0x00000000;
+  }
+
+  hal.setFrameBufferStartAddresses((uint16_t*)frameBuf0, (uint16_t*)frameBuf1, NULL);
+
+  Bitmap::cacheAll();
 
     hal.setTouchSampleRate(2);
-    hal.setFingerSize(1);
+    hal.setFingerSize(10);
 
     // By default frame rate compensation is off.
     // Enable frame rate compensation to smooth out animations in case there is periodic slow frame rates.
-    hal.setFrameRateCompensation(false);
+    hal.setFrameRateCompensation(true);
 
     // This platform can handle simultaneous DMA and TFT accesses to SDRAM, so disable lock to increase performance.
     hal.lockDMAToFrontPorch(false);
@@ -122,7 +137,7 @@ void touchgfx_init()
 
     //Set MCU instrumentation and Load calculation
     hal.setMCUInstrumentation(&mcuInstr);
-    hal.enableMCULoadCalculation(true);
+    hal.enableMCULoadCalculation(false);
 }
 }
 
@@ -133,5 +148,6 @@ void GRAPHICS_Init()
 
 void GRAPHICS_MainTask(void)
 {
+	touchgfx::HAL::getInstance()->setDisplayOrientation(ORIENTATION_PORTRAIT);
     touchgfx::HAL::getInstance()->taskEntry();
 }

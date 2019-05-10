@@ -24,7 +24,12 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <sys/unistd.h>
+#include <errno.h>
+extern "C"
+{
+#include "persist_storage.h"
+}
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,9 +61,9 @@ TIM_HandleTypeDef htim4;
 UART_HandleTypeDef huart2;
 
 osThreadId defaultTaskHandle;
-osMutexId debugMutexHandleHandle;
+osMutexId debugMutexHandle;
 /* USER CODE BEGIN PV */
-
+osThreadId persistStorageTaskHandle;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -77,12 +82,30 @@ static void MX_GFXSIMULATOR_Init(void);
 void StartDefaultTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
-
+extern "C" void PersistStorageTask(void const *argument);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+int _write(int file, char *data, int len)
+{
+  HAL_StatusTypeDef status = HAL_OK;
 
+  if ((file != STDOUT_FILENO) && (file != STDERR_FILENO))
+  {
+    errno = EBADF;
+    return -1;
+  }
+
+  status = HAL_UART_Transmit(&huart2, (uint8_t*) data, len-1, 100);
+
+  if (HAL_OK == status)
+  {
+    status = HAL_UART_Transmit(&huart2, (uint8_t*) "\r\n", 2, 100);
+  }
+
+  return (status == HAL_OK ? len : 0);
+}
 /* USER CODE END 0 */
 
 /**
@@ -123,21 +146,17 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
-
-/* Initialise the graphical hardware */
-  GRAPHICS_HW_Init();
-
-  /* Initialise the graphical stack engine */
-  GRAPHICS_Init();
-      
   
   /* Create the mutex(es) */
   /* definition and creation of debugMutexHandle */
-  osMutexDef(debugMutexHandle);
-  debugMutexHandleHandle = osMutexCreate(osMutex(debugMutexHandle));
+  osMutexDef(debugMutex);
+  debugMutexHandle = osMutexCreate(osMutex(debugMutex));
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
+  DBG_LOG("MAIN", "SageGlass Switch v0.0.1");
+  printf("Hello world\r\n");
+  _write(1, (char *)"Hello world!\r\n", sizeof("Hello world!\r\n"));
   /* USER CODE END RTOS_MUTEX */
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
@@ -158,7 +177,8 @@ int main(void)
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
+  osThreadDef(pStorageTask, PersistStorageTask, osPriorityNormal, 0, 256);
+  persistStorageTaskHandle = osThreadCreate(osThread(pStorageTask), NULL);
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
@@ -545,7 +565,10 @@ static void MX_GPIO_Init(void)
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void const * argument)
 {
+  PS_Init();
 
+  GRAPHICS_HW_Init();
+  GRAPHICS_Init();
 /* Graphic application */  
   GRAPHICS_MainTask();
 

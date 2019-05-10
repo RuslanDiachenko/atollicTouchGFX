@@ -4,9 +4,25 @@
       {
         "Components": [
           {
+            "Pressed": "background_image.png",
+            "Released": "background_image.png",
+            "Alpha": 0,
+            "Name": "windowSettingsButton",
+            "X": 0,
+            "Y": 0,
+            "Width": 272,
+            "Height": 480,
+            "Type": "Button",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
             "RelativeFilename": "background_image.png",
             "Alpha": 255,
-            "Name": "background_image1",
+            "Name": "background",
             "X": 0,
             "Y": 0,
             "Width": 272,
@@ -19,13 +35,28 @@
             "Moveable": false
           },
           {
-            "RelativeFilename": "background_image_blur.png",
+            "RelativeFilename": "combinedGraphicNew.png",
             "Alpha": 255,
-            "Name": "image",
-            "X": 299,
-            "Y": 0,
-            "Width": 272,
-            "Height": 480,
+            "Name": "sunHorizontImg",
+            "X": 1,
+            "Y": 333,
+            "Width": 271,
+            "Height": 80,
+            "Type": "Image",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "RelativeFilename": "sun-icon.png",
+            "Alpha": 255,
+            "Name": "sunIcon",
+            "X": 66,
+            "Y": 336,
+            "Width": 26,
+            "Height": 26,
             "Type": "Image",
             "Visible": true,
             "Draggable": false,
@@ -34,15 +65,190 @@
             "Moveable": true
           },
           {
-            "Pressed": "__designer\\blue_buttons_round_icon_button_pressed.png",
-            "Released": "__designer\\blue_buttons_round_icon_button.png",
+            "TextId": "SingleUseId3",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
             "Alpha": 255,
-            "Name": "button1",
-            "X": 15,
-            "Y": 92,
-            "Width": 60,
-            "Height": 60,
+            "AutoSize": false,
+            "LineSpacing": 0,
+            "Wildcard1": {
+              "TextId": "SingleUseId4",
+              "UseBuffer": true,
+              "BufferSize": 3
+            },
+            "Wildcard2": {
+              "TextId": "SingleUseId5",
+              "UseBuffer": true,
+              "BufferSize": 3
+            },
+            "Name": "clockNum",
+            "X": 42,
+            "Y": 50,
+            "Width": 121,
+            "Height": 49,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId6",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Wildcard1": {
+              "TextId": "SingleUseId7",
+              "UseBuffer": true,
+              "BufferSize": 3
+            },
+            "Name": "clockText",
+            "X": 165,
+            "Y": 50,
+            "Width": 63,
+            "Height": 49,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId8",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Wildcard1": {
+              "TextId": "SingleUseId9",
+              "UseBuffer": true,
+              "BufferSize": 20
+            },
+            "Name": "dayOfWeek",
+            "X": 30,
+            "Y": 106,
+            "Width": 213,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "RelativeFilename": "background_image_blur.png",
+            "Alpha": 0,
+            "Name": "backgroundBlur",
+            "X": 0,
+            "Y": 0,
+            "Width": 272,
+            "Height": 480,
+            "Type": "Image",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": true,
+            "Moveable": false
+          },
+          {
+            "Pressed": "panelsettingsbuttonicon.png",
+            "Released": "panelsettingsbuttonicon.png",
+            "Alpha": 255,
+            "Name": "panelSettingsButton",
+            "X": 220,
+            "Y": 428,
+            "Width": 40,
+            "Height": 40,
             "Type": "Button",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "CustomContainerDefinitionName": "AllZonesContainer",
+            "Name": "allZonesContainer",
+            "X": -260,
+            "Y": 10,
+            "Width": 255,
+            "Height": 411,
+            "Type": "CustomContainerInstance",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": true
+          },
+          {
+            "CustomContainerDefinitionName": "WindowSettingsContainer",
+            "Name": "windowSettingsContainer",
+            "X": -260,
+            "Y": 10,
+            "Width": 255,
+            "Height": 411,
+            "Type": "CustomContainerInstance",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": true
+          },
+          {
+            "CustomContainerDefinitionName": "AllScenesContainer",
+            "Name": "allScenesContainer",
+            "X": -260,
+            "Y": 10,
+            "Width": 254,
+            "Height": 411,
+            "Type": "CustomContainerInstance",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": true
+          },
+          {
+            "CustomContainerDefinitionName": "PanelSettingsContainer",
+            "Name": "panelSettingsContainer",
+            "X": 10,
+            "Y": -410,
+            "Width": 250,
+            "Height": 400,
+            "Type": "CustomContainerInstance",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": true
+          },
+          {
+            "RelativeFilename": "saintGobainLogo.png",
+            "Alpha": 255,
+            "Name": "saintGobainLogo",
+            "X": 87,
+            "Y": 433,
+            "Width": 99,
+            "Height": 30,
+            "Type": "Image",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -52,31 +258,1759 @@
         ],
         "Interactions": [
           {
-            "InteractionName": "Interaction1",
-            "HasCompletedTrigger": false,
+            "InteractionName": "WindowSettingsButtonClicked",
+            "HasCompletedTrigger": true,
             "Trigger": {
-              "TriggerComponent": "button1",
+              "TriggerComponent": "windowSettingsButton",
               "Type": "TriggerClicked"
             },
             "Action": {
-              "FunctionName": "button1Callback",
+              "FunctionName": "WindowSettingsButtonClicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "PanelSettingsButtonClicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "panelSettingsButton",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "PanelSettingsButtonClicked",
               "Type": "ActionCustom"
             }
           }
         ],
-        "Name": "Screen1",
+        "Name": "Main",
         "OverrideDefaultBufferSize": false,
         "CanvasBufferSize": 0
       }
     ],
-    "CustomContainerDefinitions": [],
+    "CustomContainerDefinitions": [
+      {
+        "Components": [
+          {
+            "RelativeFilename": "panelbase.png",
+            "Alpha": 255,
+            "Name": "background",
+            "X": 0,
+            "Y": 0,
+            "Width": 255,
+            "Height": 411,
+            "Type": "Image",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Pressed": "closebutton.png",
+            "Released": "closebutton.png",
+            "Alpha": 255,
+            "Name": "closeButton",
+            "X": 210,
+            "Y": 3,
+            "Width": 40,
+            "Height": 40,
+            "Type": "Button",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Components": [],
+            "HorizontalScrollEnabled": false,
+            "VerticalScrollEnabled": true,
+            "ScrollbarsVisible": false,
+            "ScrollbarsVisibleOnPressed": false,
+            "ScrollbarsColor": {
+              "Red": 0,
+              "Green": 0,
+              "Blue": 0
+            },
+            "ScrollbarsAlpha": 255,
+            "Name": "scrollableAllZonesContainer",
+            "X": 6,
+            "Y": 71,
+            "Width": 244,
+            "Height": 334,
+            "Type": "ScrollableContainer",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Pressed": "backbutton.png",
+            "Released": "backbutton.png",
+            "Alpha": 255,
+            "Name": "backButton",
+            "X": 6,
+            "Y": 3,
+            "Width": 40,
+            "Height": 40,
+            "Type": "Button",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId11",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "containerNameText",
+            "X": 97,
+            "Y": 11,
+            "Width": 60,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "CloseButtonClicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "closeButton",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "CloseButtonClicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "BackButtonClicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "backButton",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "BackButtonClicked",
+              "Type": "ActionCustom"
+            }
+          }
+        ],
+        "Name": "AllZonesContainer",
+        "X": 8,
+        "Y": 20,
+        "Width": 255,
+        "Height": 411,
+        "Type": "CustomContainerDefinition",
+        "Visible": true,
+        "Draggable": false,
+        "Clickable": false,
+        "Fadeable": false,
+        "Moveable": false
+      },
+      {
+        "Components": [
+          {
+            "TextId": "SingleUseId1",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Wildcard1": {
+              "TextId": "SingleUseId2",
+              "UseBuffer": true,
+              "BufferSize": 20
+            },
+            "Name": "zoneNameText",
+            "X": 69,
+            "Y": 13,
+            "Width": 113,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "zonegrey3pressed.png",
+            "Released": "zonegrey3notpressed.png",
+            "Alpha": 255,
+            "Name": "zoneModeButton0",
+            "X": 0,
+            "Y": 56,
+            "Width": 55,
+            "Height": 47,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "zonegrey2pressed.png",
+            "Released": "zonegrey2notpressed.png",
+            "Alpha": 255,
+            "Name": "zoneModeButton1",
+            "X": 63,
+            "Y": 56,
+            "Width": 55,
+            "Height": 47,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "zonegrey1pressed.png",
+            "Released": "zonegrey1notpressed.png",
+            "Alpha": 255,
+            "Name": "zoneModeButton2",
+            "X": 127,
+            "Y": 56,
+            "Width": 55,
+            "Height": 47,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "zonewhitepressed.png",
+            "Released": "zonewhitenotpressed.png",
+            "Alpha": 255,
+            "Name": "zoneModeButton3",
+            "X": 190,
+            "Y": 56,
+            "Width": 55,
+            "Height": 47,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "zonegrad4pressed.png",
+            "Released": "zonegrad4notpressed.png",
+            "Alpha": 255,
+            "Name": "zoneModeButton4",
+            "X": 0,
+            "Y": 117,
+            "Width": 55,
+            "Height": 47,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "zonegrad3pressed.png",
+            "Released": "zonegrad3notpressed.png",
+            "Alpha": 255,
+            "Name": "zoneModeButton5",
+            "X": 63,
+            "Y": 117,
+            "Width": 55,
+            "Height": 47,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "zonegrad2pressed.png",
+            "Released": "zonegrad2notpressed.png",
+            "Alpha": 255,
+            "Name": "zoneModeButton6",
+            "X": 127,
+            "Y": 117,
+            "Width": 55,
+            "Height": 47,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "zonegrad1pressed.png",
+            "Released": "zonegrad1notpressed.png",
+            "Alpha": 255,
+            "Name": "zoneModeButton7",
+            "X": 190,
+            "Y": 117,
+            "Width": 55,
+            "Height": 47,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "ZoneModeButton1Clicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "zoneModeButton1",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "ZoneModeButton1Clicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "ZoneModeButton2Clicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "zoneModeButton2",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "ZoneModeButton2Clicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "ZoneModeButton3Clicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "zoneModeButton3",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "ZoneModeButton3Clicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "ZoneModeButton4Clicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "zoneModeButton4",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "ZoneModeButton4Clicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "ZoneModeButton0Clicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "zoneModeButton0",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "ZoneModeButton0Clicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "ZoneModeButton5Clicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "zoneModeButton5",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "ZoneModeButton5Clicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "ZoneModeButton6Clicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "zoneModeButton6",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "ZoneModeButton6Clicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "ZoneModeButton7Clicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "zoneModeButton7",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "ZoneModeButton7Clicked",
+              "Type": "ActionCustom"
+            }
+          }
+        ],
+        "Name": "SingleZoneContainer",
+        "X": 10,
+        "Y": 20,
+        "Width": 250,
+        "Height": 180,
+        "Type": "CustomContainerDefinition",
+        "Visible": true,
+        "Draggable": false,
+        "Clickable": false,
+        "Fadeable": false,
+        "Moveable": false
+      },
+      {
+        "Components": [
+          {
+            "RelativeFilename": "panelbase.png",
+            "Alpha": 255,
+            "Name": "imageBase",
+            "X": 0,
+            "Y": 0,
+            "Width": 255,
+            "Height": 411,
+            "Type": "Image",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Pressed": "closebutton.png",
+            "Released": "closebutton.png",
+            "Alpha": 255,
+            "Name": "closeButton",
+            "X": 210,
+            "Y": 3,
+            "Width": 40,
+            "Height": 40,
+            "Type": "Button",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId10",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "containerNameText",
+            "X": 41,
+            "Y": 68,
+            "Width": 168,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": true,
+            "Pressed": "autotintbuttonpressednew.png",
+            "Released": "autotintbuttonnotpressednew.png",
+            "Alpha": 255,
+            "Name": "autoTintButton",
+            "X": 8,
+            "Y": 167,
+            "Width": 238,
+            "Height": 50,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "manualtintbuttonpressednew.png",
+            "Released": "manualtintbuttonnotpressednew.png",
+            "Alpha": 255,
+            "Name": "manualTintButton",
+            "X": 8,
+            "Y": 222,
+            "Width": 238,
+            "Height": 50,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "presentscenesbuttonpressednew.png",
+            "Released": "presentscenesbuttonnotpressednew.png",
+            "Alpha": 255,
+            "Name": "presetScenesButton",
+            "X": 8,
+            "Y": 282,
+            "Width": 238,
+            "Height": 50,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId27",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "autoTintText",
+            "X": 81,
+            "Y": 180,
+            "Width": 92,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId28",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 140,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "manualTintText",
+            "X": 81,
+            "Y": 235,
+            "Width": 117,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId29",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 140,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "presetScenesText",
+            "X": 81,
+            "Y": 295,
+            "Width": 141,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "CloseButtonClicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "closeButton",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "CloseButtonClicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "AutoTintButtonClicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "autoTintButton",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "AutoTintButtonClicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "ManualTintButtonClicked",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "TriggerComponent": "manualTintButton",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "ManualTintButtonClicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "PresetScenesButtonClicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "presetScenesButton",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "PresetScenesButtonClicked",
+              "Type": "ActionCustom"
+            }
+          }
+        ],
+        "Name": "WindowSettingsContainer",
+        "X": 0,
+        "Y": 10,
+        "Width": 255,
+        "Height": 411,
+        "Type": "CustomContainerDefinition",
+        "Visible": true,
+        "Draggable": false,
+        "Clickable": false,
+        "Fadeable": false,
+        "Moveable": false
+      },
+      {
+        "Components": [
+          {
+            "RelativeFilename": "panelbase.png",
+            "Alpha": 255,
+            "Name": "panelBase",
+            "X": 0,
+            "Y": 0,
+            "Width": 255,
+            "Height": 411,
+            "Type": "Image",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Pressed": "backbutton.png",
+            "Released": "backbutton.png",
+            "Alpha": 255,
+            "Name": "backButton",
+            "X": 6,
+            "Y": 3,
+            "Width": 40,
+            "Height": 40,
+            "Type": "Button",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Pressed": "closebutton.png",
+            "Released": "closebutton.png",
+            "Alpha": 255,
+            "Name": "closeButton",
+            "X": 210,
+            "Y": 3,
+            "Width": 40,
+            "Height": 40,
+            "Type": "Button",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId12",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "containerNameText",
+            "X": 92,
+            "Y": 13,
+            "Width": 71,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": true,
+            "Pressed": "togglepressed.png",
+            "Released": "togglenotpressed.png",
+            "Alpha": 255,
+            "Name": "sceneButton0",
+            "X": 5,
+            "Y": 93,
+            "Width": 220,
+            "Height": 30,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "togglepressed.png",
+            "Released": "togglenotpressed.png",
+            "Alpha": 255,
+            "Name": "sceneButton1",
+            "X": 5,
+            "Y": 141,
+            "Width": 220,
+            "Height": 30,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "togglepressed.png",
+            "Released": "togglenotpressed.png",
+            "Alpha": 255,
+            "Name": "sceneButton2",
+            "X": 5,
+            "Y": 190,
+            "Width": 220,
+            "Height": 30,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "togglepressed.png",
+            "Released": "togglenotpressed.png",
+            "Alpha": 255,
+            "Name": "sceneButton3",
+            "X": 5,
+            "Y": 241,
+            "Width": 220,
+            "Height": 30,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "togglepressed.png",
+            "Released": "togglenotpressed.png",
+            "Alpha": 255,
+            "Name": "sceneButton4",
+            "X": 5,
+            "Y": 293,
+            "Width": 220,
+            "Height": 30,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId25",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 140,
+            "AutoSize": false,
+            "LineSpacing": 0,
+            "Name": "sceneNameText4",
+            "X": 45,
+            "Y": 295,
+            "Width": 193,
+            "Height": 27,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId23",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 140,
+            "AutoSize": false,
+            "LineSpacing": 0,
+            "Name": "sceneNameText3",
+            "X": 45,
+            "Y": 243,
+            "Width": 193,
+            "Height": 27,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId21",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 140,
+            "AutoSize": false,
+            "LineSpacing": 0,
+            "Name": "sceneNameText2",
+            "X": 45,
+            "Y": 192,
+            "Width": 193,
+            "Height": 27,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId19",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 140,
+            "AutoSize": false,
+            "LineSpacing": 0,
+            "Name": "sceneNameText1",
+            "X": 45,
+            "Y": 143,
+            "Width": 193,
+            "Height": 27,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId26",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "sceneNameText0",
+            "X": 45,
+            "Y": 96,
+            "Width": 139,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "CloseButtonClicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "closeButton",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "CloseButtonClicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "BackButtonClicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "backButton",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "BackButtonClicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "SceneButton0Clicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "sceneButton0",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "SceneButton0Clicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "SceneButton1Clicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "sceneButton1",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "SceneButton1Clicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "SceneButton2Clicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "sceneButton2",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "SceneButton2Clicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "SceneButton3Clicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "sceneButton3",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "SceneButton3Clicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "SceneButton4Clicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "sceneButton4",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "SceneButton4Clicked",
+              "Type": "ActionCustom"
+            }
+          }
+        ],
+        "Name": "AllScenesContainer",
+        "X": 0,
+        "Y": 0,
+        "Width": 254,
+        "Height": 411,
+        "Type": "CustomContainerDefinition",
+        "Visible": true,
+        "Draggable": false,
+        "Clickable": false,
+        "Fadeable": false,
+        "Moveable": false
+      },
+      {
+        "Components": [
+          {
+            "Pressed": "closebutton.png",
+            "Released": "closebutton.png",
+            "Alpha": 255,
+            "Name": "closeButton",
+            "X": 210,
+            "Y": 3,
+            "Width": 40,
+            "Height": 40,
+            "Type": "Button",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId30",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "containerNameText",
+            "X": 16,
+            "Y": 12,
+            "Width": 143,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId31",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "panelBrightnessText",
+            "X": 16,
+            "Y": 51,
+            "Width": 176,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "IsHorizontalSlider": true,
+            "BackgroundUnselected": "sliderBase4Points.png",
+            "BackgroundSelected": "sliderBase4Points.png",
+            "Indicator": "sliderindicator.png",
+            "BackgroundX": 2,
+            "BackgroundY": 22,
+            "IndicatorPos": 19,
+            "IndicatorMax": 201,
+            "IndicatorMin": 0,
+            "ValueMax": 100,
+            "ValueMin": 0,
+            "InitValue": 33,
+            "Name": "sleepAfterSlider",
+            "X": 15,
+            "Y": 136,
+            "Width": 221,
+            "Height": 39,
+            "Type": "Slider",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId32",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 234,
+              "Green": 234,
+              "Blue": 234
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "staticTextArea1",
+            "X": 10,
+            "Y": 179,
+            "Width": 32,
+            "Height": 15,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId33",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 234,
+              "Green": 234,
+              "Blue": 234
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "staticTextArea2",
+            "X": 79,
+            "Y": 179,
+            "Width": 34,
+            "Height": 15,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId34",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 234,
+              "Green": 234,
+              "Blue": 234
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "staticTextArea3",
+            "X": 147,
+            "Y": 179,
+            "Width": 34,
+            "Height": 15,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId35",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 234,
+              "Green": 234,
+              "Blue": 234
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "staticTextArea4",
+            "X": 219,
+            "Y": 179,
+            "Width": 12,
+            "Height": 15,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "IsHorizontalSlider": true,
+            "BackgroundUnselected": "sliderbase2points.png",
+            "BackgroundSelected": "sliderbase2points.png",
+            "Indicator": "sliderindicator.png",
+            "BackgroundX": 2,
+            "BackgroundY": 22,
+            "IndicatorPos": 19,
+            "IndicatorMax": 201,
+            "IndicatorMin": 0,
+            "ValueMax": 100,
+            "ValueMin": 0,
+            "InitValue": 100,
+            "Name": "panelBrightnessSlider",
+            "X": 15,
+            "Y": 63,
+            "Width": 221,
+            "Height": 39,
+            "Type": "Slider",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId36",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 234,
+              "Green": 234,
+              "Blue": 234
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "staticTextArea7",
+            "X": 10,
+            "Y": 102,
+            "Width": 28,
+            "Height": 15,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId37",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 234,
+              "Green": 234,
+              "Blue": 234
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "staticTextArea8",
+            "X": 210,
+            "Y": 102,
+            "Width": 36,
+            "Height": 15,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId38",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "sleepAfterText",
+            "X": 16,
+            "Y": 124,
+            "Width": 121,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId39",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 234,
+              "Green": 234,
+              "Blue": 234
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "staticTextArea5",
+            "X": 7,
+            "Y": 380,
+            "Width": 97,
+            "Height": 15,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId40",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 234,
+              "Green": 234,
+              "Blue": 234
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "staticTextArea6",
+            "X": 140,
+            "Y": 380,
+            "Width": 104,
+            "Height": 15,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId41",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "visualStyleText",
+            "X": 16,
+            "Y": 206,
+            "Width": 127,
+            "Height": 25,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "whitestylebuttonpressed.png",
+            "Released": "whitestylebuttonnotpressed.png",
+            "Alpha": 255,
+            "Name": "lightStyleButton",
+            "X": 0,
+            "Y": 254,
+            "Width": 55,
+            "Height": 47,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "darkstylebuttonpressed.png",
+            "Released": "darkstylebuttonnotpressed.png",
+            "Alpha": 255,
+            "Name": "darkStyleButton",
+            "X": 63,
+            "Y": 254,
+            "Width": 55,
+            "Height": 47,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "InitialStatePressed": false,
+            "Pressed": "urbanstylebuttonpressed.png",
+            "Released": "urbanstylebuttonnotpressed.png",
+            "Alpha": 255,
+            "Name": "urbanStyleButton",
+            "X": 127,
+            "Y": 254,
+            "Width": 55,
+            "Height": 47,
+            "Type": "ToggleButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId42",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 234,
+              "Green": 234,
+              "Blue": 234
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "staticTextArea9",
+            "X": 10,
+            "Y": 306,
+            "Width": 35,
+            "Height": 15,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId43",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 234,
+              "Green": 234,
+              "Blue": 234
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "staticTextArea10",
+            "X": 76,
+            "Y": 306,
+            "Width": 29,
+            "Height": 15,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId44",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 234,
+              "Green": 234,
+              "Blue": 234
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "staticTextArea11",
+            "X": 136,
+            "Y": 306,
+            "Width": 36,
+            "Height": 15,
+            "Type": "TextArea",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "CloseButtonClicked",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "closeButton",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "CloseButtonClicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "sleepAfterSliderInteraction",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "sleepAfterSlider",
+              "Type": "TriggerSliderValueConfirmed"
+            },
+            "Action": {
+              "FunctionName": "sleepAfterSliderCallback",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "panelBrightnessSliderInteraction",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "panelBrightnessSlider",
+              "Type": "TriggerSliderValueConfirmed"
+            },
+            "Action": {
+              "FunctionName": "panelBrightnessSliderCallback",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "urbanStyleButtonInteraction",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "urbanStyleButton",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "urbanStyleButtonClicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "darkStyleButtonInteraction",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "darkStyleButton",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "darkStyleButtonClicked",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "lightStyleButtonInteraction",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "lightStyleButton",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "lightStyleButtonClicked",
+              "Type": "ActionCustom"
+            }
+          }
+        ],
+        "Name": "PanelSettingsContainer",
+        "X": 10,
+        "Y": 10,
+        "Width": 250,
+        "Height": 400,
+        "Type": "CustomContainerDefinition",
+        "Visible": true,
+        "Draggable": false,
+        "Clickable": false,
+        "Fadeable": false,
+        "Moveable": false
+      }
+    ],
+    "TextEntries": [
+      {
+        "TextEntryId": "SingleUseId1",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId2",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId3",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId4",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId5",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId6",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId7",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId8",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId9",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId10",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId11",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId12",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId26",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId21",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId23",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId25",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId19",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId27",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId28",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId29",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId30",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId31",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId32",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId33",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId34",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId35",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId36",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId37",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId38",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId39",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId40",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId41",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId42",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId43",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId44",
+        "IsResource": false
+      }
+    ],
     "Name": "MyApplication",
     "Resolution": {
       "Width": 272,
       "Height": 480
     },
     "SelectedColorDepth": 24,
-    "StartupScreenName": "Screen1",
+    "StartupScreenName": "Main",
     "SelectedStartupLanguage": "GB",
     "Skin": "Blue",
     "TouchGfxPath": "../Middlewares/ST/TouchGFX/touchgfx/",

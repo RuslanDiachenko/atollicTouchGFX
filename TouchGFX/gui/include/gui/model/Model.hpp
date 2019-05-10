@@ -35,6 +35,11 @@ public:
      * the ModelListener interface.
      */
     void tick();
+    
+    int getCurrentSunState() const { return currentSunState; }
+private:
+  int currentSunState;
+  
 protected:
     /**
      * Pointer to the currently active presenter.
