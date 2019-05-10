@@ -100,12 +100,12 @@ namespace touchgfx
 {
 void touchgfx_init()
 {
-  uint16_t dispWidth = 272;
-  uint16_t dispHeight = 480;
+  uint16_t dispWidth = 480;
+  uint16_t dispHeight = 272;
   
   HAL& hal = touchgfx_generic_init<STM32F4HAL>(dma, display, tc, dispWidth, dispHeight,(uint16_t*) 0, 
                                                0, 0); 
-
+    hal.getInstance()->setDisplayOrientation(ORIENTATION_PORTRAIT);
     hal.setFrameBufferStartAddress((uint16_t*)frameBuf0, bitdepth ,true , true);
 
     hal.setTouchSampleRate(2);
@@ -123,8 +123,6 @@ void touchgfx_init()
     //Set MCU instrumentation and Load calculation
     hal.setMCUInstrumentation(&mcuInstr);
     hal.enableMCULoadCalculation(true);
-
-    HAL::getInstance()->setDisplayOrientation(ORIENTATION_PORTRAIT);
 }
 }
 
