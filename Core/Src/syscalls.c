@@ -99,7 +99,7 @@ __attribute__((weak)) int _read(int file, char *ptr, int len)
 
 return len;
 }
-/*
+#if 0
 __attribute__((weak)) int _write(int file, char *ptr, int len)
 {
 	int DataIdx;
@@ -110,7 +110,7 @@ __attribute__((weak)) int _write(int file, char *ptr, int len)
 	}
 	return len;
 }
-*/
+#endif
 
 caddr_t _sbrk(int incr)
 {

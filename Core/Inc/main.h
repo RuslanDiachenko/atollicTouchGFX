@@ -34,6 +34,8 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 #include "cmsis_os.h"
 #include <stdio.h>
+#include <stdarg.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -44,6 +46,7 @@ extern "C" {
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
 extern osMutexId debugMutexHandle;
+extern UART_HandleTypeDef huart2;
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
@@ -57,7 +60,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-
+extern void customPrintf(char *str, ...);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
@@ -88,7 +91,7 @@ typedef enum
 typedef enum
 {
   NONE = 0,
-  DATE_TIME_CHANGED = 1,
+  DATE_TIME_CHANGED,
   SLEEP_AFTER_TIMER
 } ui_msg_type_t;
 
@@ -122,7 +125,7 @@ typedef struct
 #define DISPLAY_LOG(severity, cmp, msg, ...)                                              \
                       {                                                                   \
                         osMutexWait(debugMutexHandle, osWaitForever);                     \
-                        printf("<" severity ">" "<" cmp ">" "<%-30s(%04i)> " msg "\r\n",  \
+                        customPrintf((char *)("<" severity ">" "<" cmp ">" "<%-30s(%04i)> " msg "\r\n"),\
                                __FUNCTION__, __LINE__, ##__VA_ARGS__);                    \
                         osMutexRelease(debugMutexHandle);                                 \
                       }

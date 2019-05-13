@@ -222,7 +222,7 @@ void PanelSettingsContainer::setStyle(int style)
   lightStyleButton.invalidate();
 }
 
-#ifdef hhh
+#ifndef SIMULATOR
 static void changePWMOut(uint16_t pulseWidth)
 {
   TIM_OC_InitTypeDef conf;

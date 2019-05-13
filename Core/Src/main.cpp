@@ -26,6 +26,8 @@
 /* USER CODE BEGIN Includes */
 #include <sys/unistd.h>
 #include <errno.h>
+#include <stdarg.h>
+#include <string.h>
 extern "C"
 {
 #include "persist_storage.h"
@@ -64,6 +66,9 @@ osThreadId defaultTaskHandle;
 osMutexId debugMutexHandle;
 /* USER CODE BEGIN PV */
 osThreadId persistStorageTaskHandle;
+osThreadId uiTaskHandle;
+
+osTimerId sleepAfterTimerHandle;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -83,28 +88,37 @@ void StartDefaultTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
 extern "C" void PersistStorageTask(void const *argument);
+void StartUITask(void const * argument);
+void sleepAfterTimerHandler(void const *argument);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-int _write(int file, char *data, int len)
+osMailQDef(sunMsgBox_g, 5, ui_state_t);
+osMailQId sunMsgBox_g;
+
+void customPrintf(char *str, ...)
 {
-  HAL_StatusTypeDef status = HAL_OK;
+	char buf[200] = {0};
+	va_list args;
+	va_start(args, str);
+	vsprintf(buf, str, args);
+	va_end(args);
+	HAL_UART_Transmit(&huart2, (uint8_t *)buf, sizeof(buf), 1000);
+}
 
-  if ((file != STDOUT_FILENO) && (file != STDERR_FILENO))
-  {
-    errno = EBADF;
-    return -1;
-  }
+int sendUIStateMsg(ui_state_t state)
+{
+  osStatus status = osOK;
+  ui_state_t *mail = 0;
 
-  status = HAL_UART_Transmit(&huart2, (uint8_t*) data, len-1, 100);
+  mail = (ui_state_t *) osMailAlloc(sunMsgBox_g, 100);
 
-  if (HAL_OK == status)
-  {
-    status = HAL_UART_Transmit(&huart2, (uint8_t*) "\r\n", 2, 100);
-  }
+  *mail = state;
 
-  return (status == HAL_OK ? len : 0);
+  status = osMailPut(sunMsgBox_g, mail);
+
+  return (int) status;
 }
 /* USER CODE END 0 */
 
@@ -155,8 +169,7 @@ int main(void)
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
   DBG_LOG("MAIN", "SageGlass Switch v0.0.1");
-  printf("Hello world\r\n");
-  _write(1, (char *)"Hello world!\r\n", sizeof("Hello world!\r\n"));
+  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
   /* USER CODE END RTOS_MUTEX */
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
@@ -165,6 +178,8 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_TIMERS */
   /* start timers, add new ones, ... */
+  osTimerDef(sleepAfterTimer, sleepAfterTimerHandler);
+  sleepAfterTimerHandle = osTimerCreate(osTimer(sleepAfterTimer), osTimerOnce, NULL);
   /* USER CODE END RTOS_TIMERS */
 
   /* USER CODE BEGIN RTOS_QUEUES */
@@ -179,6 +194,9 @@ int main(void)
   /* USER CODE BEGIN RTOS_THREADS */
   osThreadDef(pStorageTask, PersistStorageTask, osPriorityNormal, 0, 256);
   persistStorageTaskHandle = osThreadCreate(osThread(pStorageTask), NULL);
+
+  osThreadDef(uiTask, StartUITask, osPriorityNormal, 0, 256);
+  uiTaskHandle = osThreadCreate(osThread(uiTask), NULL);
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
@@ -195,6 +213,83 @@ int main(void)
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
+}
+
+/* USER CODE BEGIN Header_StartDefaultTask */
+/**
+  * @brief  Function implementing the defaultTask thread.
+  * @param  argument: Not used
+  * @retval None
+  */
+/* USER CODE END Header_StartDefaultTask */
+void StartDefaultTask(void const * argument)
+{
+  PS_Init();
+
+  GRAPHICS_HW_Init();
+  GRAPHICS_Init();
+/* Graphic application */
+  GRAPHICS_MainTask();
+
+  /* USER CODE BEGIN 5 */
+  /* Infinite loop */
+  for (;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END 5 */
+}
+
+void StartUITask(void const *argument)
+{
+  static uint8_t prevHour = 0, prevMinute = 0;
+  sunMsgBox_g = osMailCreate(osMailQ(sunMsgBox_g), NULL);
+  ui_state_t state;
+  memset(&state, 0, sizeof(state));
+  state.dateTime.hour = 10;
+  for (;;)
+  {
+    state.msgType = NONE;
+    if (state.dateTime.seconds >= 60)
+    {
+      state.dateTime.seconds = 0;
+      state.dateTime.minute++;
+    }
+    if (state.dateTime.minute >= 60)
+    {
+      state.dateTime.minute = 0;
+      state.dateTime.hour++;
+    }
+    if (state.dateTime.hour >= 12)
+    {
+      state.dateTime.hour = 0;
+      state.dateTime.hF++;
+    }
+    if (state.dateTime.hF >= 2)
+    {
+      state.dateTime.hF = 0;
+    }
+    osDelay(1000);
+    state.dateTime.seconds++;
+
+    if (prevHour != state.dateTime.hour || prevMinute != state.dateTime.minute)
+    {
+      state.msgType = DATE_TIME_CHANGED;
+      sendUIStateMsg(state);
+    }
+  }
+}
+
+extern sleep_after_state_t sleepAfterState_g;
+
+void sleepAfterTimerHandler(void const *argument)
+{
+  sleepAfterState_g.screenState = 0;
+  ui_state_t state;
+  state.msgType = SLEEP_AFTER_TIMER;
+  sendUIStateMsg(state);
+  DBG_LOG("TIM1", "Sleep after timer expired");
+  HAL_GPIO_WritePin(LCD_DISP_GPIO_Port, LCD_DISP_Pin, GPIO_PIN_RESET);
 }
 
 /**
@@ -440,9 +535,9 @@ static void MX_TIM4_Init(void)
 
   /* USER CODE END TIM4_Init 1 */
   htim4.Instance = TIM4;
-  htim4.Init.Prescaler = 0;
+  htim4.Init.Prescaler = 700;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 0;
+  htim4.Init.Period = 1000;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
@@ -555,31 +650,6 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 /* USER CODE END 4 */
-
-/* USER CODE BEGIN Header_StartDefaultTask */
-/**
-  * @brief  Function implementing the defaultTask thread.
-  * @param  argument: Not used 
-  * @retval None
-  */
-/* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void const * argument)
-{
-  PS_Init();
-
-  GRAPHICS_HW_Init();
-  GRAPHICS_Init();
-/* Graphic application */  
-  GRAPHICS_MainTask();
-
-  /* USER CODE BEGIN 5 */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
-  /* USER CODE END 5 */ 
-}
 
 /**
   * @brief  This function is executed in case of error occurrence.

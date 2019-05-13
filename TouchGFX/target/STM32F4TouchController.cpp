@@ -11,6 +11,9 @@ uint32_t LCD_GetXSize();
 uint32_t LCD_GetYSize();
 }
 
+extern sleep_after_state_t sleepAfterState_g;
+extern osTimerId sleepAfterTimerHandle;
+
 using namespace touchgfx;
 
 void STM32F4TouchController::init()
@@ -35,6 +38,9 @@ bool STM32F4TouchController::sampleTouch(int32_t& x, int32_t& y)
     {
     	x = state.x;
     	y = state.y;
+        HAL_GPIO_WritePin(LCD_DISP_GPIO_Port, LCD_DISP_Pin, GPIO_PIN_SET);
+        if (!sleepAfterState_g.infinity)
+          osTimerStart(sleepAfterTimerHandle, pdMS_TO_TICKS(sleepAfterState_g.duration * 1000));
     	return true;
     }
     return false;
