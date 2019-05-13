@@ -21,6 +21,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
+#include "lwip.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -67,6 +68,7 @@ osMutexId debugMutexHandle;
 /* USER CODE BEGIN PV */
 osThreadId persistStorageTaskHandle;
 osThreadId uiTaskHandle;
+osThreadId ethTaskHandle;
 
 osTimerId sleepAfterTimerHandle;
 /* USER CODE END PV */
@@ -89,6 +91,7 @@ void StartDefaultTask(void const * argument);
 /* USER CODE BEGIN PFP */
 extern "C" void PersistStorageTask(void const *argument);
 void StartUITask(void const * argument);
+void StartEthTask(void const * argument);
 void sleepAfterTimerHandler(void const *argument);
 /* USER CODE END PFP */
 
@@ -164,7 +167,7 @@ int main(void)
   /* Create the mutex(es) */
   /* definition and creation of debugMutexHandle */
   osMutexDef(debugMutex);
-  debugMutexHandle = osMutexCreate(osMutex(debugMutex));
+  debugMutexHandle= osMutexCreate(osMutex(debugMutex));
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
@@ -188,7 +191,7 @@ int main(void)
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 4096);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 256);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -197,8 +200,13 @@ int main(void)
 
   osThreadDef(uiTask, StartUITask, osPriorityNormal, 0, 256);
   uiTaskHandle = osThreadCreate(osThread(uiTask), NULL);
+
+  osThreadDef(ethTask, StartEthTask, osPriorityAboveNormal, 0, 256);
+  ethTaskHandle = osThreadCreate(osThread(ethTask), NULL);
   /* USER CODE END RTOS_THREADS */
 
+
+  osThreadSuspend(ethTaskHandle);
   /* Start scheduler */
   osKernelStart();
   
@@ -224,12 +232,18 @@ int main(void)
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void const * argument)
 {
+/* Initialize persist storage manager */
   PS_Init();
 
-  GRAPHICS_HW_Init();
-  GRAPHICS_Init();
+/* Initialize the graphical hardware */
+  //GRAPHICS_HW_Init();
+
+/* Initialize the graphical stack engine */
+  //GRAPHICS_Init();
+
+  osThreadResume(ethTaskHandle);
 /* Graphic application */
-  GRAPHICS_MainTask();
+  //GRAPHICS_MainTask();
 
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
@@ -238,6 +252,17 @@ void StartDefaultTask(void const * argument)
     osDelay(1);
   }
   /* USER CODE END 5 */
+}
+
+void StartEthTask(void const * argument)
+{
+	/* Initialize code for LWIP */
+	MX_LWIP_Init();
+
+	for (;;)
+	{
+		osDelay(1);
+	}
 }
 
 void StartUITask(void const *argument)
@@ -308,8 +333,9 @@ void SystemClock_Config(void)
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
   /** Initializes the CPU, AHB and APB busses clocks 
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE|RCC_OSCILLATORTYPE_LSI;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 8;
