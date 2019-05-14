@@ -100,14 +100,17 @@ void sleepAfterTimerHandler(void const *argument);
 osMailQDef(sunMsgBox_g, 5, ui_state_t);
 osMailQId sunMsgBox_g;
 
+char debugBuf[1024] = {0};
+
 void customPrintf(char *str, ...)
 {
-	char buf[200] = {0};
 	va_list args;
 	va_start(args, str);
-	vsprintf(buf, str, args);
+	uint16_t size = vsprintf(debugBuf, str, args);
+	if (size >= 1024)
+
 	va_end(args);
-	HAL_UART_Transmit(&huart2, (uint8_t *)buf, sizeof(buf), 1000);
+	HAL_UART_Transmit(&huart2, (uint8_t *)debugBuf, size, 1000);
 }
 
 int sendUIStateMsg(ui_state_t state)
@@ -191,7 +194,7 @@ int main(void)
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 256);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 4096);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -236,14 +239,14 @@ void StartDefaultTask(void const * argument)
   PS_Init();
 
 /* Initialize the graphical hardware */
-  //GRAPHICS_HW_Init();
+  GRAPHICS_HW_Init();
 
 /* Initialize the graphical stack engine */
-  //GRAPHICS_Init();
+  GRAPHICS_Init();
 
   osThreadResume(ethTaskHandle);
 /* Graphic application */
-  //GRAPHICS_MainTask();
+  GRAPHICS_MainTask();
 
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
