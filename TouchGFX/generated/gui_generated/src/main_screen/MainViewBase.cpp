@@ -40,12 +40,11 @@ MainViewBase::MainViewBase() :
     clockText.resizeToCurrentText();
     clockText.setTypedText(TypedText(T_SINGLEUSEID6));
 
-    dayOfWeek.setXY(30, 106);
+    dayOfWeek.setPosition(1, 106, 271, 25);
     dayOfWeek.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
     dayOfWeek.setLinespacing(0);
     Unicode::snprintf(dayOfWeekBuffer, DAYOFWEEK_SIZE, "%s", TypedText(T_SINGLEUSEID9).getText());
     dayOfWeek.setWildcard(dayOfWeekBuffer);
-    dayOfWeek.resizeToCurrentText();
     dayOfWeek.setTypedText(TypedText(T_SINGLEUSEID8));
 
     backgroundBlur.setXY(0, 0);

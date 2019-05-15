@@ -7,7 +7,6 @@ using namespace touchgfx;
 FONT_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::KerningNode kerning_verdana_20_4bpp[] FONT_LOCATION_FLASH_ATTRIBUTE =
 {
-    {0x004C, -1},  // (First char = [0x004C, ], Second char = [0x0027, ], Kerning dist = -1) 
     {0x0046, -2},  // (First char = [0x0046, ], Second char = [0x002C, ], Kerning dist = -2) 
     {0x0050, -2},  // (First char = [0x0050, ], Second char = [0x002C, ], Kerning dist = -2) 
     {0x0054, -2},  // (First char = [0x0054, ], Second char = [0x002C, ], Kerning dist = -2) 
@@ -24,7 +23,6 @@ KEEP extern const touchgfx::KerningNode kerning_verdana_20_4bpp[] FONT_LOCATION_
     {0x0057, -1},  // (First char = [0x0057, ], Second char = [0x003A, ], Kerning dist = -1) 
     {0x0059, -2},  // (First char = [0x0059, ], Second char = [0x003A, ], Kerning dist = -2) 
     {0x0066,  1},  // (First char = [0x0066, ], Second char = [0x003F, ], Kerning dist = 1) 
-    {0x0027, -1},  // (First char = [0x0027, ], Second char = [0x0041, ], Kerning dist = -1) 
     {0x0046, -1},  // (First char = [0x0046, ], Second char = [0x0041, ], Kerning dist = -1) 
     {0x0054, -1},  // (First char = [0x0054, ], Second char = [0x0041, ], Kerning dist = -1) 
     {0x0059, -1},  // (First char = [0x0059, ], Second char = [0x0041, ], Kerning dist = -1) 

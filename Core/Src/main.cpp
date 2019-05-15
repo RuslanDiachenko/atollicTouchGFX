@@ -23,12 +23,12 @@
 #include "cmsis_os.h"
 #include <sys/unistd.h>
 #include <errno.h>
-#include <lwip.h>
 #include <stdarg.h>
 #include <string.h>
 extern "C"
 {
 #include "persist_storage.h"
+#include "lwip.h"
 }
 /* USER CODE END Includes */
 
@@ -205,8 +205,8 @@ int main(void)
   ethTaskHandle = osThreadCreate(osThread(ethTask), NULL);
   /* USER CODE END RTOS_THREADS */
 
-
   osThreadSuspend(ethTaskHandle);
+  osThreadSuspend(uiTaskHandle);
   /* Start scheduler */
   osKernelStart();
   
@@ -262,8 +262,9 @@ void StartDefaultTask(void const * argument)
 void StartEthTask(void const * argument)
 {
 	/* Initialize code for LWIP */
-	//MX_LWIP_Init();
+	MX_LWIP_Init();
 
+	osThreadResume(uiTaskHandle);
 	for (;;)
 	{
 		osDelay(1);
@@ -310,7 +311,7 @@ void StartUITask(void const *argument)
 	ui_state_t state;
 	RTC_DateTypeDef date;
 	RTC_TimeTypeDef time;
-	RTC_TimeTypeDef prevTime;
+	RTC_TimeTypeDef prevTime = {1};
 
 	for (;;)
 	{

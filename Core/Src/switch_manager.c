@@ -9,6 +9,8 @@
 #include "switch_manager.h"
 #include <string.h>
 
+extern RTC_HandleTypeDef hrtc;
+
 static struct
 {
   uint8_t general;
@@ -214,7 +216,31 @@ RV_t SW_ClockConfig(uint8_t hour, uint8_t minute, uint8_t second, uint8_t day, u
 		uint8_t dayOfTheWeek, uint8_t sunriseHour, uint8_t sunriseMin, uint8_t sunsetHour, uint8_t sunsetMin)
 {
 	/* TODO: Implement RTC */
+  RTC_TimeTypeDef time;
+  RTC_DateTypeDef date;
 
+  time.Hours = hour;
+  time.Minutes = minute;
+  time.Seconds = second;
+  time.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+  time.StoreOperation = RTC_STOREOPERATION_RESET;
+  time.TimeFormat = RTC_HOURFORMAT_24;
+
+  date.Year = year;
+  date.Month = month;
+  date.Date = day;
+  date.WeekDay = dayOfTheWeek;
+
+  if (HAL_RTC_SetTime(&hrtc, &time, RTC_FORMAT_BIN))
+  {
+	  DBG_ERR(SWITCH_MGR, "Failed to set RTC time");
+	  return RV_FAILURE;
+  }
+  if (HAL_RTC_SetDate(&hrtc, &date, RTC_FORMAT_BIN))
+  {
+	  DBG_ERR(SWITCH_MGR, "Failed to set RTC date");
+	  return RV_FAILURE;
+  }
   DBG_LOG(SWITCH_MGR, "Time parameters have been successfully applied");
 
   return RV_SUCCESS;

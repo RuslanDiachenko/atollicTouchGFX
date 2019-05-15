@@ -205,6 +205,7 @@
             <entry excluding="Inc/fsdata.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
             <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
             <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="GRAPHICS"/>
+            <entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Lwip"/>
             <entry excluding="ST/TouchGFX/touchgfx/framework" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
             <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="TouchGFX"/>
             <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>
@@ -402,6 +403,8 @@
     <project id="SageGlass_Switch_TouchGFX.com.atollic.truestudio.exe.1549124020" name="Executable" projectType="com.atollic.truestudio.exe"/>
   </storageModule>
   <storageModule moduleId="refreshScope"/>
+  <storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+  <storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
   <storageModule moduleId="scannerConfiguration">
     <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
     <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile">
@@ -414,6 +417,32 @@
         <parser enabled="true"/>
       </scannerInfoProvider>
     </profile>
+    <scannerConfigBuildInfo instanceId="com.atollic.truestudio.exe.debug.1518366166;com.atollic.truestudio.exe.debug.1518366166.2031504340;com.atollic.truestudio.exe.debug.toolchain.gcc.1836874447;com.atollic.truestudio.gcc.input.850396938">
+      <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.atollic.truestudio.mbs.ARMToolsPerProjectProfileC"/>
+      <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile">
+        <buildOutputProvider>
+          <openAction enabled="true" filePath=""/>
+          <parser enabled="true"/>
+        </buildOutputProvider>
+        <scannerInfoProvider id="makefileGenerator">
+          <runAction arguments="-f ${project_name}_scd.mk" command="make" useDefault="true"/>
+          <parser enabled="true"/>
+        </scannerInfoProvider>
+      </profile>
+    </scannerConfigBuildInfo>
+    <scannerConfigBuildInfo instanceId="com.atollic.truestudio.exe.debug.1518366166;com.atollic.truestudio.exe.debug.1518366166.2031504340;com.atollic.truestudio.exe.debug.toolchain.gpp.981298185;com.atollic.truestudio.gpp.input.19671009">
+      <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.atollic.truestudio.mbs.ARMToolsPerProjectProfileCPP"/>
+      <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile">
+        <buildOutputProvider>
+          <openAction enabled="true" filePath=""/>
+          <parser enabled="true"/>
+        </buildOutputProvider>
+        <scannerInfoProvider id="makefileGenerator">
+          <runAction arguments="-f ${project_name}_scd.mk" command="make" useDefault="true"/>
+          <parser enabled="true"/>
+        </scannerInfoProvider>
+      </profile>
+    </scannerConfigBuildInfo>
     <scannerConfigBuildInfo instanceId="com.atollic.truestudio.exe.debug.1518366166;com.atollic.truestudio.exe.debug.1518366166.303277065;com.atollic.truestudio.exe.debug.toolchain.gcc.393815702;com.atollic.truestudio.gcc.input.1088835115">
       <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
       <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile">
@@ -441,6 +470,4 @@
       </profile>
     </scannerConfigBuildInfo>
   </storageModule>
-  <storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-  <storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cproject>

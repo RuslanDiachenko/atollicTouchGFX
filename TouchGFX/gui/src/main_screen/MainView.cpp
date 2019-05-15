@@ -3,6 +3,7 @@
 #include <touchgfx/Color.hpp>
 
 #ifndef SIMULATOR
+#include <stdlib.h>
 #include "main.h"
 extern sleep_after_state_t sleepAfterState_g;
 #endif
@@ -205,12 +206,15 @@ void MainView::ClosePanelSettingsContainerHandler(void)
 }
 
 
-void MainView::setSunState(int hour, int minute, int hF, int dow)
+void MainView::setSunState(int hour, int minute, int hF, int dow, int date, int month)
 {
     static int16_t prevSunState = -1; 
     int16_t endX, endY, newSunState = 0;
     uint16_t totalMin = minute + hour*60;
     uint8_t hideSun = 0;
+    char dateBuf[4] = {0};
+    Unicode::UnicodeChar endBuf[20] = {0};
+
     if (hF)
     {
       totalMin += 360;
@@ -276,37 +280,90 @@ void MainView::setSunState(int hour, int minute, int hF, int dow)
     else
         Unicode::strncpy(clockTextBuffer, "am", CLOCKTEXT_SIZE);
     clockText.invalidate();
-/*
-    Unicode::UnicodeChar dayOfWeekStr[10] = {0};
 
+    char dayOfWeekStr[20] = {0};
     switch (dow)
     {
-        case 0:
-            Unicode::strncpy(dayOfWeekStr, "Monday", 10);
-            break;
-        case 1:
-            Unicode::strncpy(dayOfWeekStr, "Tuesday", 10);
-            break;
-        case 2:
-            Unicode::strncpy(dayOfWeekStr, "Wednesday", 10);
-            break;
-        case 3:
-            Unicode::strncpy(dayOfWeekStr, "Thursday", 10);
-            break;
-        case 4:
-            Unicode::strncpy(dayOfWeekStr, "Friday", 10);
-            break;
-        case 5:
-            Unicode::strncpy(dayOfWeekStr, "Saturday", 10);
-            break;
-        case 6:
-            Unicode::strncpy(dayOfWeekStr, "Sunday", 10);
-            break;
+    case 1:
+    	strcpy(dayOfWeekStr, "Monday, ");
+    	break;
+    case 2:
+    	strcpy(dayOfWeekStr, "Tuesday, ");
+    	break;
+    case 3:
+    	strcpy(dayOfWeekStr, "Wednesday, ");
+    	break;
+    case 4:
+    	strcpy(dayOfWeekStr, "Thursday, ");
+    	break;
+    case 5:
+    	strcpy(dayOfWeekStr, "Friday, ");
+    	break;
+    case 6:
+    	strcpy(dayOfWeekStr, "Saturday, ");
+    	break;
+    case 7:
+    	strcpy(dayOfWeekStr, "Sunday, ");
+    	break;
     }
 
-    Unicode::snprintf(dayOfWeekBuffer, DAYOFWEEK_SIZE, "%s", dayOfWeekStr);
+    switch (month)
+    {
+    case 1:
+    	strcat(dayOfWeekStr, "Jan ");
+    	break;
+    case 2:
+    	strcat(dayOfWeekStr, "Feb ");
+    	break;
+    case 3:
+    	strcat(dayOfWeekStr, "Mar ");
+    	break;
+    case 4:
+    	strcat(dayOfWeekStr, "Apr ");
+    	break;
+    case 5:
+    	strcat(dayOfWeekStr, "May ");
+    	break;
+    case 6:
+    	strcat(dayOfWeekStr, "Jun ");
+    	break;
+    case 7:
+    	strcat(dayOfWeekStr, "Jul ");
+    	break;
+    case 8:
+    	strcat(dayOfWeekStr, "Aug ");
+    	break;
+    case 9:
+    	strcat(dayOfWeekStr, "Sep ");
+    	break;
+    case 10:
+    	strcat(dayOfWeekStr, "Oct ");
+    	break;
+    case 11:
+    	strcat(dayOfWeekStr, "Nov ");
+    	break;
+    case 12:
+    	strcat(dayOfWeekStr, "Dec ");
+    	break;
+    }
+
+    itoa(date, dateBuf, 10);
+
+    if (date == 1)
+    	strcat(dateBuf, "st");
+    else if (date == 2)
+    	strcat(dateBuf, "nd");
+    else if (date == 3)
+    	strcat(dateBuf, "rd");
+    else
+    	strcat(dateBuf, "th");
+
+    strcat(dayOfWeekStr, dateBuf);
+
+    Unicode::strncpy(endBuf, dayOfWeekStr, 20);
+    Unicode::snprintf(dayOfWeekBuffer, DAYOFWEEK_SIZE, "%s", endBuf);
+
     dayOfWeek.invalidate();
-*/
     
     sunIcon.setVisible(!hideSun);
     sunHorizontImg.setVisible(!hideSun);

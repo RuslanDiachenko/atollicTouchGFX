@@ -134,7 +134,7 @@
               "Blue": 255
             },
             "Alpha": 255,
-            "AutoSize": true,
+            "AutoSize": false,
             "LineSpacing": 0,
             "Wildcard1": {
               "TextId": "SingleUseId9",
@@ -142,9 +142,9 @@
               "BufferSize": 20
             },
             "Name": "dayOfWeek",
-            "X": 30,
+            "X": 1,
             "Y": 106,
-            "Width": 213,
+            "Width": 271,
             "Height": 25,
             "Type": "TextArea",
             "Visible": true,
