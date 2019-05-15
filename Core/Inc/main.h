@@ -97,13 +97,9 @@ typedef enum
 
 typedef struct
 {
-  uint8_t hour;
-  uint8_t minute;
-  uint8_t seconds;
-  uint8_t hF;
-  uint8_t dayOfWeek;
-  uint8_t day;
-  uint8_t month;
+  RTC_TimeTypeDef time;
+  RTC_DateTypeDef date;
+
 } date_time_state_t;
 
 typedef struct

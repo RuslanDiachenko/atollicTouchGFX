@@ -11,7 +11,8 @@ Model::Model() : modelListener(0)
 extern osMailQId uiMsgBox_g;
 
 static osEvent evt;
-ui_state_t *mail;
+static ui_state_t *mail;
+static uint8_t hour, minute, hF, dayOfWeek, date, month;
 
 void Model::tick()
 {
@@ -24,9 +25,23 @@ void Model::tick()
     {
       if (mail->msgType == DATE_TIME_CHANGED)
       {
-        if (prevHour != mail->dateTime.hour || prevMinute != mail->dateTime.minute)
+        if (prevHour != mail->dateTime.time.Hours || prevMinute != mail->dateTime.time.Minutes)
         {
-          modelListener->notifySunStateChanged(mail->dateTime.hour, mail->dateTime.minute, mail->dateTime.hF, mail->dateTime.dayOfWeek);
+          if (mail->dateTime.time.Hours >= 12)
+          {
+        	  hF = 1;
+        	  hour = mail->dateTime.time.Hours - 12;
+          }
+          else
+          {
+        	  hF = 0;
+        	  hour = mail->dateTime.time.Hours;
+          }
+          minute = mail->dateTime.time.Minutes;
+          dayOfWeek = mail->dateTime.date.WeekDay;
+          date = mail->dateTime.date.Date;
+          month = mail->dateTime.date.Month;
+          modelListener->notifySunStateChanged(hour, minute, hF, dayOfWeek);
         }
       }
       else if(mail->msgType == SLEEP_AFTER_TIMER)

@@ -247,7 +247,9 @@ void StartDefaultTask(void const * argument)
 /* Initialize the graphical stack engine */
   GRAPHICS_Init();
 
+/* Resume Ethernet task */
   osThreadResume(ethTaskHandle);
+
 /* Graphic application */
   GRAPHICS_MainTask();
 
@@ -273,41 +275,61 @@ void StartEthTask(void const * argument)
 
 void StartUITask(void const *argument)
 {
-  static uint8_t prevHour = 0, prevMinute = 0;
-  ui_state_t state;
-  memset(&state, 0, sizeof(state));
-  state.dateTime.hour = 10;
-  for (;;)
-  {
-    state.msgType = NONE;
-    if (state.dateTime.seconds >= 60)
-    {
-      state.dateTime.seconds = 0;
-      state.dateTime.minute++;
-    }
-    if (state.dateTime.minute >= 60)
-    {
-      state.dateTime.minute = 0;
-      state.dateTime.hour++;
-    }
-    if (state.dateTime.hour >= 12)
-    {
-      state.dateTime.hour = 0;
-      state.dateTime.hF++;
-    }
-    if (state.dateTime.hF >= 2)
-    {
-      state.dateTime.hF = 0;
-    }
-    osDelay(1000);
-    state.dateTime.seconds++;
+//  static uint8_t prevHour = 0, prevMinute = 0;
+//  ui_state_t state;
+//  memset(&state, 0, sizeof(state));
+//  state.dateTime.hour = 10;
+//  for (;;)
+//  {
+//    state.msgType = NONE;
+//    if (state.dateTime.seconds >= 60)
+//    {
+//      state.dateTime.seconds = 0;
+//      state.dateTime.minute++;
+//    }
+//    if (state.dateTime.minute >= 60)
+//    {
+//      state.dateTime.minute = 0;
+//      state.dateTime.hour++;
+//    }
+//    if (state.dateTime.hour >= 12)
+//    {
+//      state.dateTime.hour = 0;
+//      state.dateTime.hF++;
+//    }
+//    if (state.dateTime.hF >= 2)
+//    {
+//      state.dateTime.hF = 0;
+//    }
+//    osDelay(1000);
+//    state.dateTime.seconds++;
+//
+//    if (prevHour != state.dateTime.hour || prevMinute != state.dateTime.minute)
+//    {
+//      state.msgType = DATE_TIME_CHANGED;
+//      sendUIStateMsg(state);
+//    }
+//  }
+	ui_state_t state;
+	RTC_DateTypeDef date;
+	RTC_TimeTypeDef time;
+	RTC_TimeTypeDef prevTime;
 
-    if (prevHour != state.dateTime.hour || prevMinute != state.dateTime.minute)
-    {
-      state.msgType = DATE_TIME_CHANGED;
-      sendUIStateMsg(state);
-    }
-  }
+	for (;;)
+	{
+		HAL_RTC_GetTime(&hrtc, &time, RTC_FORMAT_BIN);
+		HAL_RTC_GetDate(&hrtc, &date, RTC_FORMAT_BIN);
+		if (prevTime.Hours != time.Hours || prevTime.Minutes != time.Minutes ||
+				prevTime.Seconds != time.Seconds)
+		{
+			prevTime = time;
+			state.dateTime.time = time;
+			state.dateTime.date = date;
+			state.msgType = DATE_TIME_CHANGED;
+			sendUIStateMsg(state);
+		}
+		osDelay(10);
+	}
 }
 
 extern sleep_after_state_t sleepAfterState_g;
