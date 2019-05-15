@@ -21,12 +21,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
-#include "lwip.h"
-
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 #include <sys/unistd.h>
 #include <errno.h>
+#include <lwip.h>
 #include <stdarg.h>
 #include <string.h>
 extern "C"
@@ -265,7 +262,7 @@ void StartDefaultTask(void const * argument)
 void StartEthTask(void const * argument)
 {
 	/* Initialize code for LWIP */
-	MX_LWIP_Init();
+	//MX_LWIP_Init();
 
 	for (;;)
 	{

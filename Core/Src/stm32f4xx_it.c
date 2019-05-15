@@ -59,7 +59,7 @@
 /* External variables --------------------------------------------------------*/
 extern SDRAM_HandleTypeDef hsdram1;
 extern LTDC_HandleTypeDef hltdc;
-extern ETH_HandleTypeDef heth;
+//extern ETH_HandleTypeDef heth;
 /* USER CODE BEGIN EV */
 extern DMA2D_HandleTypeDef hdma2d;
 /* USER CODE END EV */
@@ -192,16 +192,16 @@ void FMC_IRQHandler(void)
 /**
   * @brief This function handles Ethernet global interrupt.
   */
-void ETH_IRQHandler(void)
-{
-  /* USER CODE BEGIN ETH_IRQn 0 */
-
-  /* USER CODE END ETH_IRQn 0 */
-  HAL_ETH_IRQHandler(&heth);
-  /* USER CODE BEGIN ETH_IRQn 1 */
-
-  /* USER CODE END ETH_IRQn 1 */
-}
+//void ETH_IRQHandler(void)
+//{
+//  /* USER CODE BEGIN ETH_IRQn 0 */
+//
+//  /* USER CODE END ETH_IRQn 0 */
+//  HAL_ETH_IRQHandler(&heth);
+//  /* USER CODE BEGIN ETH_IRQn 1 */
+//
+//  /* USER CODE END ETH_IRQn 1 */
+//}
 
 /**
   * @brief This function handles LTDC global interrupt.

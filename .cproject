@@ -41,8 +41,9 @@
               </tool>
               <tool command="arm-atollic-eabi-gcc -c " commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG}${OUTPUT_PREFIX} ${OUTPUT} ${INPUTS}" id="com.atollic.truestudio.exe.debug.toolchain.gcc.1836874447" name="C Compiler" superClass="com.atollic.truestudio.exe.debug.toolchain.gcc">
                 <option id="com.atollic.truestudio.gcc.directories.select.330946435" name="Include path" superClass="com.atollic.truestudio.gcc.directories.select" useByScannerDiscovery="false" valueType="includePath">
-                  <listOptionValue builtIn="false" value="../LWIP/App"/>
-                  <listOptionValue builtIn="false" value="../LWIP/Target"/>
+                  <listOptionValue builtIn="false" value="../Core/Inc"/>
+                  <listOptionValue builtIn="false" value="../Lwip/App"/>
+                  <listOptionValue builtIn="false" value="../Lwip/Target"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/include"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/system"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/include/netif/ppp"/>
@@ -55,7 +56,6 @@
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/include/posix"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/include/posix/sys"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/system/arch"/>
-                  <listOptionValue builtIn="false" value="../Core/Inc"/>
                   <listOptionValue builtIn="false" value="../TouchGFX/target"/>
                   <listOptionValue builtIn="false" value="../TouchGFX/generated/fonts/include"/>
                   <listOptionValue builtIn="false" value="../TouchGFX/generated/texts/include"/>
@@ -117,21 +117,21 @@
               </tool>
               <tool id="com.atollic.truestudio.exe.debug.toolchain.gpp.981298185" name="C++ Compiler" superClass="com.atollic.truestudio.exe.debug.toolchain.gpp">
                 <option id="com.atollic.truestudio.gpp.directories.select.330946435" name="Include path" superClass="com.atollic.truestudio.gpp.directories.select" useByScannerDiscovery="false" valueType="includePath">
-                  <listOptionValue builtIn="false" value="../LWIP/App"/>
-                  <listOptionValue builtIn="false" value="../LWIP/Target"/>
+                  <listOptionValue builtIn="false" value="../Core/Inc"/>
+                  <listOptionValue builtIn="false" value="../Lwip/Target"/>
+                  <listOptionValue builtIn="false" value="../Lwip/App"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/include"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/system"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/include/netif/ppp"/>
-                  <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/apps/httpd"/>
-                  <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/include/lwip"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/include/lwip/apps"/>
+                  <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/include/lwip"/>
+                  <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/apps/httpd"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/include/lwip/priv"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/include/lwip/prot"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/include/netif"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/include/posix"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/src/include/posix/sys"/>
                   <listOptionValue builtIn="false" value="../Middlewares/Third_Party/LwIP/system/arch"/>
-                  <listOptionValue builtIn="false" value="../Core/Inc"/>
                   <listOptionValue builtIn="false" value="../TouchGFX/target"/>
                   <listOptionValue builtIn="false" value="../TouchGFX/generated/fonts/include"/>
                   <listOptionValue builtIn="false" value="../TouchGFX/generated/texts/include"/>
@@ -202,7 +202,7 @@
             </tool>
           </fileInfo>
           <sourceEntries>
-            <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
+            <entry excluding="Inc/fsdata.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
             <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
             <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="GRAPHICS"/>
             <entry excluding="ST/TouchGFX/touchgfx/framework" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
@@ -384,7 +384,7 @@
             </tool>
           </fileInfo>
           <sourceEntries>
-            <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
+            <entry excluding="Inc/fsdata.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
             <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
             <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="GRAPHICS"/>
             <entry excluding="ST/TouchGFX/touchgfx/framework" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
