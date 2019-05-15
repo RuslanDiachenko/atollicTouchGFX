@@ -97,8 +97,8 @@ void sleepAfterTimerHandler(void const *argument);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-osMailQDef(sunMsgBox_g, 5, ui_state_t);
-osMailQId sunMsgBox_g;
+osMailQDef(uiMsgBox_g, 5, ui_state_t);
+osMailQId uiMsgBox_g;
 
 char debugBuf[1024] = {0};
 
@@ -118,11 +118,11 @@ int sendUIStateMsg(ui_state_t state)
   osStatus status = osOK;
   ui_state_t *mail = 0;
 
-  mail = (ui_state_t *) osMailAlloc(sunMsgBox_g, 100);
+  mail = (ui_state_t *) osMailAlloc(uiMsgBox_g, 100);
 
   *mail = state;
 
-  status = osMailPut(sunMsgBox_g, mail);
+  status = osMailPut(uiMsgBox_g, mail);
 
   return (int) status;
 }
@@ -235,6 +235,9 @@ int main(void)
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void const * argument)
 {
+/* Initialize UI message box */
+  uiMsgBox_g = osMailCreate(osMailQ(uiMsgBox_g), NULL);
+
 /* Initialize persist storage manager */
   PS_Init();
 
@@ -271,7 +274,6 @@ void StartEthTask(void const * argument)
 void StartUITask(void const *argument)
 {
   static uint8_t prevHour = 0, prevMinute = 0;
-  sunMsgBox_g = osMailCreate(osMailQ(sunMsgBox_g), NULL);
   ui_state_t state;
   memset(&state, 0, sizeof(state));
   state.dateTime.hour = 10;
@@ -336,9 +338,9 @@ void SystemClock_Config(void)
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
   /** Initializes the CPU, AHB and APB busses clocks 
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE|RCC_OSCILLATORTYPE_LSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE|RCC_OSCILLATORTYPE_LSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
+  RCC_OscInitStruct.LSEState = RCC_LSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 8;
@@ -372,11 +374,14 @@ void SystemClock_Config(void)
   PeriphClkInitStruct.PLLSAI.PLLSAIN = 96;
   PeriphClkInitStruct.PLLSAI.PLLSAIR = 5;
   PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_4;
-  PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_LSI;
+  PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
+  /** Enables the Clock Security System
+  */
+  HAL_RCC_EnableCSS();
 }
 
 /**
@@ -490,7 +495,7 @@ static void MX_RTC_Init(void)
   /** Initialize RTC Only 
   */
   hrtc.Instance = RTC;
-  hrtc.Init.HourFormat = RTC_HOURFORMAT_12;
+  hrtc.Init.HourFormat = RTC_HOURFORMAT_24;
   hrtc.Init.AsynchPrediv = 127;
   hrtc.Init.SynchPrediv = 255;
   hrtc.Init.OutPut = RTC_OUTPUT_DISABLE;
@@ -501,7 +506,29 @@ static void MX_RTC_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN RTC_Init 2 */
+  RTC_TimeTypeDef sTime;
+  RTC_DateTypeDef sDate;
 
+  sTime.Hours = 0;
+  sTime.Minutes = 0;
+  sTime.Seconds = 0;
+  sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+  sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+
+  if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  sDate.WeekDay = RTC_WEEKDAY_MONDAY;
+  sDate.Month = RTC_MONTH_JANUARY;
+  sDate.Date = 1;
+  sDate.Year = 0;
+
+  if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK)
+  {
+    Error_Handler();
+  }
   /* USER CODE END RTC_Init 2 */
 
 }

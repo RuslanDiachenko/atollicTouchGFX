@@ -8,7 +8,7 @@ Model::Model() : modelListener(0)
 #include "cmsis_os.h"
 #include "main.h"
 
-extern osMailQId sunMsgBox_g;
+extern osMailQId uiMsgBox_g;
 
 static osEvent evt;
 ui_state_t *mail;
@@ -16,7 +16,7 @@ ui_state_t *mail;
 void Model::tick()
 {
   static uint8_t prevHour = 0, prevMinute = 0;
-  evt = osMailGet(sunMsgBox_g, 0);
+  evt = osMailGet(uiMsgBox_g, 0);
   if (evt.status == osEventMail)
   {
     mail = (ui_state_t *) evt.value.p;
@@ -34,7 +34,7 @@ void Model::tick()
         modelListener->hideAllWidgets();
       }
     }
-    osMailFree(sunMsgBox_g, mail);
+    osMailFree(uiMsgBox_g, mail);
   }
 }
 #else
