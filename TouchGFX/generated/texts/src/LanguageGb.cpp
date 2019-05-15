@@ -13,8 +13,6 @@ KEEP const touchgfx::Unicode::UnicodeChar T_SingleUseId2_Gb[10] TEXT_LOCATION_FL
 TEXT_LOCATION_FLASH_PRAGMA
 KEEP const touchgfx::Unicode::UnicodeChar T_SingleUseId3_Gb[4] TEXT_LOCATION_FLASH_ATTRIBUTE = { 0x2, 0x3a, 0x2, 0x0 };
 TEXT_LOCATION_FLASH_PRAGMA
-KEEP const touchgfx::Unicode::UnicodeChar T_SingleUseId4_Gb[3] TEXT_LOCATION_FLASH_ATTRIBUTE = { 0x31, 0x30, 0x0 };
-TEXT_LOCATION_FLASH_PRAGMA
 KEEP const touchgfx::Unicode::UnicodeChar T_SingleUseId5_Gb[3] TEXT_LOCATION_FLASH_ATTRIBUTE = { 0x30, 0x30, 0x0 };
 TEXT_LOCATION_FLASH_PRAGMA
 KEEP const touchgfx::Unicode::UnicodeChar T_SingleUseId7_Gb[3] TEXT_LOCATION_FLASH_ATTRIBUTE = { 0x61, 0x6d, 0x0 };
@@ -77,7 +75,7 @@ KEEP extern const touchgfx::Unicode::UnicodeChar* const textsGb[35] TEXT_LOCATIO
     T_SingleUseId3_Gb+2,
     T_SingleUseId2_Gb,
     T_SingleUseId3_Gb,
-    T_SingleUseId4_Gb,
+    T_SingleUseId5_Gb+1,
     T_SingleUseId5_Gb,
     T_SingleUseId3_Gb+2,
     T_SingleUseId7_Gb,
