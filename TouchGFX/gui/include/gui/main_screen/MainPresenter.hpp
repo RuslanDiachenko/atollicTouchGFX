@@ -27,7 +27,7 @@ public:
 
     virtual ~MainPresenter() {};
 
-    void notifySunStateChanged(int hour, int minute, int hF, int dow, int date, int month);
+    void notifySunStateChanged(int hour, int minute, int hF, int dow, int date, int month, int sunState, int hideSun);
     void hideAllWidgets(void);
 private:
     MainPresenter();

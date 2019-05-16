@@ -86,10 +86,13 @@ static void MX_GFXSIMULATOR_Init(void);
 void StartDefaultTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
-extern "C" void PersistStorageTask(void const *argument);
+extern "C"
+{
+void PersistStorageTask(void const *argument);
 void StartUITask(void const * argument);
-void StartEthTask(void const * argument);
 void sleepAfterTimerHandler(void const *argument);
+}
+void StartEthTask(void const * argument);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -108,20 +111,6 @@ void customPrintf(char *str, ...)
 
 	va_end(args);
 	HAL_UART_Transmit(&huart2, (uint8_t *)debugBuf, size, 1000);
-}
-
-int sendUIStateMsg(ui_state_t state)
-{
-  osStatus status = osOK;
-  ui_state_t *mail = 0;
-
-  mail = (ui_state_t *) osMailAlloc(uiMsgBox_g, 100);
-
-  *mail = state;
-
-  status = osMailPut(uiMsgBox_g, mail);
-
-  return (int) status;
 }
 /* USER CODE END 0 */
 
@@ -269,77 +258,6 @@ void StartEthTask(void const * argument)
 	{
 		osDelay(1);
 	}
-}
-
-void StartUITask(void const *argument)
-{
-//  static uint8_t prevHour = 0, prevMinute = 0;
-//  ui_state_t state;
-//  memset(&state, 0, sizeof(state));
-//  state.dateTime.hour = 10;
-//  for (;;)
-//  {
-//    state.msgType = NONE;
-//    if (state.dateTime.seconds >= 60)
-//    {
-//      state.dateTime.seconds = 0;
-//      state.dateTime.minute++;
-//    }
-//    if (state.dateTime.minute >= 60)
-//    {
-//      state.dateTime.minute = 0;
-//      state.dateTime.hour++;
-//    }
-//    if (state.dateTime.hour >= 12)
-//    {
-//      state.dateTime.hour = 0;
-//      state.dateTime.hF++;
-//    }
-//    if (state.dateTime.hF >= 2)
-//    {
-//      state.dateTime.hF = 0;
-//    }
-//    osDelay(1000);
-//    state.dateTime.seconds++;
-//
-//    if (prevHour != state.dateTime.hour || prevMinute != state.dateTime.minute)
-//    {
-//      state.msgType = DATE_TIME_CHANGED;
-//      sendUIStateMsg(state);
-//    }
-//  }
-	ui_state_t state;
-	RTC_DateTypeDef date;
-	RTC_TimeTypeDef time;
-	RTC_TimeTypeDef prevTime = {1};
-
-	for (;;)
-	{
-		HAL_RTC_GetTime(&hrtc, &time, RTC_FORMAT_BIN);
-		HAL_RTC_GetDate(&hrtc, &date, RTC_FORMAT_BIN);
-		if (prevTime.Hours != time.Hours || prevTime.Minutes != time.Minutes ||
-				prevTime.Seconds != time.Seconds)
-		{
-			prevTime = time;
-			state.dateTime.time = time;
-			state.dateTime.date = date;
-			state.msgType = DATE_TIME_CHANGED;
-			sendUIStateMsg(state);
-		}
-		osDelay(10);
-	}
-}
-
-extern sleep_after_state_t sleepAfterState_g;
-
-void sleepAfterTimerHandler(void const *argument)
-{
-  sleepAfterState_g.screenState = 0;
-  ui_state_t state;
-  state.msgType = SLEEP_AFTER_TIMER;
-  sendUIStateMsg(state);
-  DBG_LOG("TIM1", "Sleep after timer expired");
-  HAL_GPIO_WritePin(LCD_DISP_GPIO_Port, LCD_DISP_Pin, GPIO_PIN_RESET);
 }
 
 /**

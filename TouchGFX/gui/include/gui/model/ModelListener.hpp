@@ -27,7 +27,7 @@ public:
         model = m;
     }
     
-    virtual void notifySunStateChanged(int hour, int minute, int hF, int dow, int date, int month) {}
+    virtual void notifySunStateChanged(int hour, int minute, int hF, int dow, int date, int month, int sunState, int hideSun) {}
     virtual void hideAllWidgets(void) {}
 protected:
     Model* model;

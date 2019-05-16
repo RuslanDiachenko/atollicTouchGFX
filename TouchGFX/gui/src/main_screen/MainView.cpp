@@ -206,70 +206,12 @@ void MainView::ClosePanelSettingsContainerHandler(void)
 }
 
 
-void MainView::setSunState(int hour, int minute, int hF, int dow, int date, int month)
+void MainView::setSunState(int hour, int minute, int hF, int dow, int date, int month, int sunState, int hideSun)
 {
     static int16_t prevSunState = -1; 
-    int16_t endX, endY, newSunState = 0;
-    uint16_t totalMin = minute + hour*60;
-    uint8_t hideSun = 0;
+    int16_t endX, endY;
     char dateBuf[4] = {0};
     Unicode::UnicodeChar endBuf[20] = {0};
-
-    if (hF)
-    {
-      totalMin += 360;
-    }
-    else
-    {
-      totalMin -= 360;
-    }
-    
-    newSunState = totalMin / 96;
-    
-    if ((hour >= 8 && minute >= 40 && hF == 1) || (hour < 6 && hF == 0))
-    {
-      hideSun = 1;
-    }
-    
-    switch (newSunState)
-    {
-        case 0:
-            endX = 23;
-            endY = 374;
-            break;
-        case 1:
-            endX = 43;
-            endY = 352;
-            break;
-        case 2:
-            endX = 66;
-            endY = 336;
-            break;
-        case 3:
-            endX = 94;
-            endY = 324;
-            break;
-        case 4:
-            endX = 123;
-            endY = 320;
-            break;
-        case 5:
-            endX = 154;
-            endY = 324;
-            break;
-        case 6:
-            endX = 182;
-            endY = 336;
-            break;
-        case 7:
-            endX = 206;
-            endY = 352;
-            break;
-        case 8:
-            endX = 225;
-            endY = 374;
-            break;
-    }
 
     Unicode::snprintf(clockNumBuffer1, CLOCKNUMBUFFER1_SIZE, "%d", hour);
     Unicode::snprintf(clockNumBuffer2, CLOCKNUMBUFFER2_SIZE, "%02d", minute);
@@ -365,16 +307,72 @@ void MainView::setSunState(int hour, int minute, int hF, int dow, int date, int 
 
     dayOfWeek.invalidate();
     
-    sunIcon.setVisible(!hideSun);
-    sunHorizontImg.setVisible(!hideSun);
+    if (hideSun)
+    {
+        sunIcon.setVisible(false);
+        sunHorizontImg.setVisible(false);
+    }
+    else
+    {
+        sunIcon.setVisible(true);
+        sunHorizontImg.setVisible(true);
+    }
     sunIcon.invalidate();
     sunHorizontImg.invalidate();
-    
-    if (prevSunState != newSunState)
-    {      
-      sunIcon.clearMoveAnimationEndedAction();
-      sunIcon.startMoveAnimation(endX, endY, 48, EasingEquations::linearEaseIn, EasingEquations::linearEaseIn);
-      prevSunState = newSunState;
+
+    switch (sunState)
+    {
+        case 0:
+            endX = 23;
+            endY = 374;
+            break;
+        case 1:
+            endX = 43;
+            endY = 352;
+            break;
+        case 2:
+            endX = 66;
+            endY = 336;
+            break;
+        case 3:
+            endX = 94;
+            endY = 324;
+            break;
+        case 4:
+            endX = 123;
+            endY = 320;
+            break;
+        case 5:
+            endX = 154;
+            endY = 324;
+            break;
+        case 6:
+            endX = 182;
+            endY = 336;
+            break;
+        case 7:
+            endX = 206;
+            endY = 352;
+            break;
+        case 8:
+            endX = 225;
+            endY = 374;
+            break;
+    }
+
+    if (prevSunState != sunState)
+    {
+      if (sunState == prevSunState - 1 || sunState == prevSunState + 1)
+      {
+        sunIcon.clearMoveAnimationEndedAction();
+        sunIcon.startMoveAnimation(endX, endY, 48, EasingEquations::linearEaseIn, EasingEquations::linearEaseIn);
+      }
+      else
+      {
+    	sunIcon.setXY(endX, endY);
+    	sunIcon.invalidate();
+      }
+      prevSunState = sunState;
     }
 }
 

@@ -8,11 +8,17 @@ Model::Model() : modelListener(0)
 #include "cmsis_os.h"
 #include "main.h"
 
+extern "C"
+{
+#include "switch_manager.h"
+}
+
 extern osMailQId uiMsgBox_g;
 
 static osEvent evt;
 static ui_state_t *mail;
-static uint8_t hour, minute, hF, dayOfWeek, date, month;
+static uint8_t hour, minute, hF, dayOfWeek, date, month, sunState, hideSun;
+static uint16_t sunriseMin, sunsetMin, totalSunTime, sunStateDivider;
 
 void Model::tick()
 {
@@ -38,7 +44,28 @@ void Model::tick()
 		dayOfWeek = mail->dateTime.date.WeekDay;
 		date = mail->dateTime.date.Date;
 		month = mail->dateTime.date.Month;
-		modelListener->notifySunStateChanged(hour, minute, hF, dayOfWeek, date, month);
+
+		if (RV_SUCCESS == SW_GetSunriseSunsetMinutes(&sunriseMin, &sunsetMin))
+		{
+		  totalSunTime = sunsetMin - sunriseMin;
+		  sunStateDivider = totalSunTime / 9;
+		  sunState = ((mail->dateTime.time.Hours * 60 + mail->dateTime.time.Minutes) - sunriseMin) / sunStateDivider;
+		  if ((mail->dateTime.time.Hours * 60 + mail->dateTime.time.Minutes) > sunsetMin ||
+		  		(mail->dateTime.time.Hours * 60 + mail->dateTime.time.Minutes) < sunriseMin)
+		  {
+		  	hideSun = 1;
+		  }
+		  else
+		  {
+		  	hideSun = 0;
+		  }
+		}
+		else
+		{
+		  sunState = 0;
+		  hideSun = 1;
+		}
+		modelListener->notifySunStateChanged(hour, minute, hF, dayOfWeek, date, month, sunState, hideSun);
       }
       else if(mail->msgType == SLEEP_AFTER_TIMER)
       {

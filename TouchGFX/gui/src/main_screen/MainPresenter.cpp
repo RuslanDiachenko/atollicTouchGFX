@@ -16,9 +16,9 @@ void MainPresenter::deactivate()
 
 }
 
-void MainPresenter::notifySunStateChanged(int hour, int minute, int hF, int dow, int date, int month)
+void MainPresenter::notifySunStateChanged(int hour, int minute, int hF, int dow, int date, int month, int sunState, int hideSun)
 {
-  view.setSunState(hour, minute, hF, dow, date, month);
+  view.setSunState(hour, minute, hF, dow, date, month, sunState, hideSun);
 }
 
 void MainPresenter::hideAllWidgets(void)

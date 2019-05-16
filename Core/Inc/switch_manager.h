@@ -9,6 +9,10 @@
 #ifndef __SWITCH_MANAGER_H
 #define __SWITCH_MANAGER_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "main.h"
 
 #define SW_MAX_NUMBER_OF_LEVELS 8
@@ -66,4 +70,10 @@ RV_t SW_SetZoneStatus(zone_status_t *status, uint8_t num);
 RV_t SW_ClockConfig(uint8_t hour, uint8_t minute, uint8_t second, uint8_t day, uint8_t month, uint8_t year, 
 		uint8_t dayOfTheWeek, uint8_t sunriseHour, uint8_t sunriseMin, uint8_t sunsetHour, uint8_t sunsetMin);
 
+
+RV_t SW_GetSunriseSunsetMinutes(uint16_t *sunriseMin, uint16_t *sunsetMin);
+
+#ifdef __cplusplus
+}
+#endif
 #endif /*__SWITCH_MANAGER_H */
